@@ -9,8 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" id="bikes_table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DublinBikeID)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
@@ -27,7 +30,10 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr> 
+        <td>
+            @Html.DisplayFor(modelItem => item.DublinBikeID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
@@ -96,61 +102,25 @@
         </div>
     </div>
 </section>
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Bike Station Real Time Information:</h2>
+                <hr class="light">
+                <p class="text-faded" id="bike_content"></p>
+                <p class="text-info" id="bike_date"></p>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
 
 
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <!-- Script init the google maps api and places the map within the map_canvas div-->
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        /* works for getting specific bike station
-        https://api.jcdecaux.com/vls/v1/stations/1?contract=Dublin&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
-             https://api.jcdecaux.com/vls/v1/stations?contract={Dublin}&apiKey={ff081760b867231eb570581fa1a7453d9ec636f4
-             GET https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name
-             Accept: application/json
-             https://api.jcdecaux.com/vls/v1/stations/1?contract=Paris&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4 
-             https://api.jcdecaux.com/vls/v1/stations&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
-             https://api.jcdecaux.com/vls/v1/stations&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
-             https://api.jcdecaux.com/vls/v1/stations/{123}?contract={Paris}&apiKey={ff081760b867231eb570581fa1a7453d9ec636f4 
-
-        */
-       /* $.ajax({
-            url: ' https://api.jcdecaux.com/vls/v1/stations/1?contract=Dublin&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4&HTTP/1.1',
-            type: "GET",
-            dataType: "jsonp",
-            Accept: "application/json",
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            },
-            success: function (resp) {
-                console.log(resp);
-
-            }
-        });
-
-    });
-    */
-
-        https://ide.c9.io/stephenkearns1/dublinbikes_api#openfile-README.md
-
-            $.ajax({
-                url: ' https://api.jcdecaux.com/vls/v1/stations/1?contract=Dublin&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4&HTTP/1.1',
-                type: "GET",
-                dataType: "jsonp",
-                Accept: "application/json",
-                error: function (xhr, status, error) {
-                    alert(xhr.responseText);
-                },
-                success: function (resp) {
-                    console.log(resp);
-
-                }
-            });
-
-    });
-</script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -206,25 +176,14 @@
         */
 
        
-            $('#bike_table td').mouseover(function () {
+            $('#bikes_table td').mouseover(function () {
                 var currentRow = $(this).closest("tr");
-                var noteId = currentRow.find('td:eq(0)').text();
-                GetDetailedInfo(noteId);
+                var bikeStationId = currentRow.find('td:eq(0)').text();
+                alert("Bike station" + bikeStationId);
+                GetRealTimeStationInfo(bikeStationId)
             });
       
-             $.ajax({
-                 url: 'https://dublinbikes-api-stephenkearns1.c9users.io/',
-                 type: "POST",
-                 Accept: "application/json",
-                 data: {bikeStationNum: 3},
-                 error: function (xhr, status, error) {
-                     alert(xhr.responseText);
-                 },
-                 success: function (resp) {
-                     console.log(resp);
-                     alert(resp.available_bike_stands);
-                 }
-             });
+            
 
          }); 
         var directionServices;
@@ -366,6 +325,26 @@
             });
 
         }
+
+
+    function GetRealTimeStationInfo(bikeStationId) {
+        var stationNum = parseInt(bikeStationId);
+        $.ajax({
+            url: 'https://dublinbikes-api-stephenkearns1.c9users.io/',
+            type: "POST",
+            Accept: "application/json",
+            data: { bikeStationNum:stationNum},
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            },
+            success: function (resp) {
+                console.log(resp);
+                alert(resp.available_bike_stands);
+                $("#bike_content").text("Avaiable bikes:" + resp.available_bike_stands);
+                $("#bike_date").text("Avaiable bike stands" + resp.available_bikes);
+            }
+        });
+    }
 
     /* api key for dublin bikes: ff081760b867231eb570581fa1a7453d9ec636f4 */
 
