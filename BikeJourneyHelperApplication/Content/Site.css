@@ -25,7 +25,7 @@ textarea {
 
 #map_canvas{
 
-    height: 500px;
+    height: 400px;
     
     
 
@@ -54,4 +54,24 @@ textarea {
     width:100%;
     color:black !important;
     
+}
+
+#origin_location{
+    width:200px;
+
+}
+
+#destination{
+    width:200px;
+    padding:5px;
+    margin-top: 10px;
+}
+
+#servicesTitle{
+    
+}
+
+#map_container{
+    overflow: hidden;
+    width:100%;
 }

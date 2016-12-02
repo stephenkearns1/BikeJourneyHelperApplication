@@ -67,3 +67,11 @@ D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyH
 D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.csprojResolveAssemblyReference.cache
 D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.dll
 D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.pdb
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.Migrations.InitialCreate.resources
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.csproj.GenerateResource.Cache
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.Migrations.AddUsername.resources
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.Migrations.AddName.resources
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\RestSharp.dll
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\Twilio.Api.dll
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\Twilio.Api.pdb
+D:\Visual Studio College projects 2016\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\Twilio.Api.xml

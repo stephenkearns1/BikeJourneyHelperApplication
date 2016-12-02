@@ -228,7 +228,7 @@
             var shopID = { 'BikeRepairShopID': $('#shopid').val() };
             console.log(shopID);
             $.ajax({
-                url: '@Url.Action("GetLocation", "BikerRepairShops")',
+                url: '@Url.Action("GetLocation", "BikeRepairShops")',
                 type: "POST",
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(shopID),

@@ -108,8 +108,13 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Bike Station Real Time Information:</h2>
                 <hr class="light">
-                <p class="text-faded" id="bike_content"></p>
-                <p class="text-info" id="bike_date"></p>
+                <p class="text-faded" id="bikeStation_name"></p> 
+                <p class="text-faded" id="bikeStation_available_stands"></p>
+                <p class="text-faded" id="bikeStation_available_bikes"></p>
+                <p class="text-faded" id="bikeStation_banking"></p>
+                <p class="text-faded" id="bikeStation_bike_stands"></p>
+                <p class="text-faded" id="bikeStation_bonus"></p>
+                <p class="text-faded" id="bikeStation_last-update"></p>
             </div>
 
         </div>
@@ -340,8 +345,17 @@
             success: function (resp) {
                 console.log(resp);
                 alert(resp.available_bike_stands);
-                $("#bike_content").text("Avaiable bikes:" + resp.available_bike_stands);
-                $("#bike_date").text("Avaiable bike stands" + resp.available_bikes);
+                //gets the date and time of last update
+                var date = new Date(resp.last_update);
+                alert(date);
+                $("#bikeStation_name").text("Station name:" + resp.name);
+                $("#bikeStation_available_stands").text("Avaiable bike stands:" + resp.available_bike_stands);
+                $("#bikeStation_available_bikes").text("Avaiable bikes:" + resp.available_bikes);
+                $("#bikeStation_banking").text("Banking:" + resp.available_bikes);
+                $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
+                $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
+                $("#bikeStation_last-update").text("Lasted updated: " + date);
+               
             }
         });
     }
