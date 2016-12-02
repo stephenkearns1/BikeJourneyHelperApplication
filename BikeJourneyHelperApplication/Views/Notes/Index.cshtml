@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BikeJourneyHelperApplication.Models.Note>
+<div class="container">
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-inverse" id="note_table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NoteID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tittle)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoteID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tittle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NoteID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NoteID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NoteID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div> 
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Content:</h2>
+                <hr class="light">
+                <p class="text-faded" id="note_content"></p>
+                <p class="text-info" id="note_date"></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#note_table td').mouseover(function () {
+            var currentRow = $(this).closest("tr");
+            var noteId = currentRow.find('td:eq(0)').text();
+            GetDetailedInfo(noteId);
+        });
+    });
+
+    function GetDetailedInfo(noteid) {
+        
+        var noteId = { 'NoteID': noteid };
+        $.ajax({
+            url: '@Url.Action("GetDetailedInfo", "Notes")',
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(noteId),
+            dataType: "json",
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            },
+            success: function (resp) {
+
+                $("#note_content").text(resp.Content);
+               
+
+                // Do something useful with the data:
+                //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+            }
+        });
+
+    }
+</script>
