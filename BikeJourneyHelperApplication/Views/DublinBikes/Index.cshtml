@@ -1,60 +1,51 @@
 ﻿@model IEnumerable<BikeJourneyHelperApplication.Models.DublinBike>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+<div class="container">
+    @{
+        ViewBag.Title = "Index";
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table" id="bikes_table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DublinBikeID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Available)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lng)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr> 
-        <td>
-            @Html.DisplayFor(modelItem => item.DublinBikeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Available)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lng)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DublinBikeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DublinBikeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DublinBikeID })
-        </td>
-    </tr>
-}
+    <h2>Index</h2>
 
-</table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" id="bikes_table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DublinBikeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DublinBikeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DublinBikeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DublinBikeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DublinBikeID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
@@ -81,25 +72,18 @@
     </div>
 </section>
 <section class="bg-white" id="map_section">
-    <div class="container">
-        <div class="row">
-
-
-
-            <div class="col-lg-8" id="map_canvas">
-
-
-            </div>
-
-            <div class="col-lg-4" id="right-panel">
-
-
-            </div>
 
 
 
 
-        </div>
+    <div class="col-lg-8" id="map_canvas">
+
+
+    </div>
+
+    <div class="col-lg-4" id="right-panel">
+
+
     </div>
 </section>
 <section class="bg-primary" id="about">
@@ -108,7 +92,7 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Bike Station Real Time Information:</h2>
                 <hr class="light">
-                <p class="text-faded" id="bikeStation_name"></p> 
+                <p class="text-faded" id="bikeStation_name"></p>
                 <p class="text-faded" id="bikeStation_available_stands"></p>
                 <p class="text-faded" id="bikeStation_available_bikes"></p>
                 <p class="text-faded" id="bikeStation_banking"></p>
@@ -130,67 +114,39 @@
 
     $(document).ready(function () {
 
-        /* works for getting specific bike station
-         $.ajax({
-                 url: ' $.ajax({
-                 url: 'https://dublinbikes-api-stephenkearns1.c9users.io/',
-                 type: "GET",
-                 dataType:"jsonp",
-                 Accept: "application/json",
-                 error: function (xhr, status, error) {
-                     alert(xhr.responseText);
-                 },
-                 success: function (resp) {
-                     console.log(resp);
-                     alert
-                 }
-             });
-
-         }); ',
-                 type: "GET",
-                 dataType:"jsonp",
-                 Accept: "application/json",
-                 error: function (xhr, status, error) {
-                     alert(xhr.responseText);
-                 },
-                 success: function (resp) {
-                     console.log(resp);
-                     alert
-                 }
-             });
-
-         }); 
+      /*
         https://api.jcdecaux.com/vls/v1/stations/1?contract=Dublin&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
              https://api.jcdecaux.com/vls/v1/stations?contract={Dublin}&apiKey={ff081760b867231eb570581fa1a7453d9ec636f4
              GET https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name
              Accept: application/json
-             https://api.jcdecaux.com/vls/v1/stations/1?contract=Paris&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4 
+             https://api.jcdecaux.com/vls/v1/stations/1?contract=Paris&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
              https://api.jcdecaux.com/vls/v1/stations&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
              https://api.jcdecaux.com/vls/v1/stations&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4
-             https://api.jcdecaux.com/vls/v1/stations/{123}?contract={Paris}&apiKey={ff081760b867231eb570581fa1a7453d9ec636f4 
+             https://api.jcdecaux.com/vls/v1/stations/{123}?contract={Paris}&apiKey={ff081760b867231eb570581fa1a7453d9ec636f4
 
         */
 
-        /* 
-        
-         Due to Dublinbikes api does not allowing for the cross sharing of resources (CORS), 
-         as there is no allow-origin-header present on the request resource, so it does not allow for cross site request to be made 
+        /*
+
+         Due to Dublinbikes api does not allowing for the cross sharing of resources (CORS),
+         as there is no allow-origin-header present on the request resource, so it does not allow for cross site request to be made
          For a soultion to this I am making a direct call from a server (Cloud9) which allows CORS to the dublin bikes api ('Doumentation isnt the best :(' ) and returning the response when request by the locally by the ajax request
-           
+
 
         */
+        $("#map_canvas").css("width", "100%");
+        $('#right-panel').css("width", "0px");
 
-       
             $('#bikes_table td').mouseover(function () {
                 var currentRow = $(this).closest("tr");
                 var bikeStationId = currentRow.find('td:eq(0)').text();
                 alert("Bike station" + bikeStationId);
                 GetRealTimeStationInfo(bikeStationId)
             });
-      
-            
 
-         }); 
+
+
+         });
         var directionServices;
         var directionDisplay;
         var userPosition;
@@ -244,27 +200,7 @@
 
 
 
-            // map.controls[google.maps.ControlPosition.TOP_LEFT].push('destination');
-
-
-
-
-
-
-           /* document.getElementById("getdirection_btn").addEventListener("click", function(){
-                GetSearchedShopLocation();
-            }); */
-
-
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
-
+           
 
 
         }
@@ -287,6 +223,9 @@
 
                 if (status === 'OK') {
                     console.log(response);
+                    $("#map_canvas").css("width", "60%");
+                    $('#right-panel').css("width", "40%");
+                    $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
 
@@ -326,12 +265,45 @@
 
                     // Do something useful with the data:
                     //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+                }, error: function (jqXHR, status, err) {
+                    alert("Station does not exist");
                 }
             });
 
         }
 
 
+    function GetRealTimeStationInfo(bikeStationId) {
+        var stationNum = parseInt(bikeStationId);
+
+        $.ajax({
+            url: "https://api.jcdecaux.com/vls/v1/stations/" + stationNum + "?contract=Dublin&apiKey=ff081760b867231eb570581fa1a7453d9ec636f4",
+            type: "GET",
+            Accept: "application/json",
+
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            },
+            success: function (resp) {
+                console.log(resp);
+                alert(resp.available_bike_stands);
+                //gets the date and time of last update
+                var date = new Date(resp.last_update);
+                alert(date);
+                $("#bikeStation_name").text("Station name:" + resp.name);
+                $("#bikeStation_available_stands").text("Avaiable bike stands:" + resp.available_bike_stands);
+                $("#bikeStation_available_bikes").text("Avaiable bikes:" + resp.available_bikes);
+                $("#bikeStation_banking").text("Banking:" + resp.available_bikes);
+                $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
+                $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
+                $("#bikeStation_last-update").text("Lasted updated: " + date);
+
+            }
+        });
+    }
+
+
+    /*
     function GetRealTimeStationInfo(bikeStationId) {
         var stationNum = parseInt(bikeStationId);
         $.ajax({
@@ -355,11 +327,12 @@
                 $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
                 $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
                 $("#bikeStation_last-update").text("Lasted updated: " + date);
-               
+
             }
         });
     }
 
+    */
     /* api key for dublin bikes: ff081760b867231eb570581fa1a7453d9ec636f4 */
 
 </script>

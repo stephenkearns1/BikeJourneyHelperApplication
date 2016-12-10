@@ -47,12 +47,12 @@ namespace BikeJourneyHelperApplication.DAL
 
             var dublinbikes = new List<DublinBike>
             {
-                new DublinBike { DublinBikeID = 1, Location = "CHATHAM STREET", Available = 20, Lat = 53.340962, Lng = -6.262287},
-                new DublinBike { DublinBikeID  = 2, Location = "BLESSINGTON STREET", Available = 20, Lat = 53.356769, Lng = -6.26814},
-                new DublinBike { DublinBikeID  = 3, Location = "CHATHAM STREET", Available = 20, Lat = 53.340962, Lng = -6.262287},
-                new DublinBike { DublinBikeID  = 4, Location = "CHATHAM STREET", Available = 20, Lat = 53.340962, Lng = -6.262287},
-                new DublinBike { DublinBikeID  = 5, Location = "CHATHAM STREET", Available = 20, Lat = 53.340962, Lng = -6.262287},
-                new DublinBike { DublinBikeID  = 6, Location = "CHATHAM STREET", Available = 20, Lat = 53.340962, Lng = -6.262287},
+                new DublinBike { DublinBikeID = 1, Location = "CHATHAM STREET", Lat = 53.340962, Lng = -6.262287},
+                new DublinBike { DublinBikeID  = 2, Location = "BLESSINGTON STREET",  Lat = 53.356769, Lng = -6.26814},
+                new DublinBike { DublinBikeID  = 3, Location = "CHATHAM STREET",  Lat = 53.340962, Lng = -6.262287},
+                new DublinBike { DublinBikeID  = 4, Location = "CHATHAM STREET",  Lat = 53.340962, Lng = -6.262287},
+                new DublinBike { DublinBikeID  = 5, Location = "CHATHAM STREET",  Lat = 53.340962, Lng = -6.262287},
+                new DublinBike { DublinBikeID  = 6, Location = "CHATHAM STREET",  Lat = 53.340962, Lng = -6.262287},
 
             };
 

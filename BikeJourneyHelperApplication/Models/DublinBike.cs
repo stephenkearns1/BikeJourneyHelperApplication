@@ -11,7 +11,7 @@ namespace BikeJourneyHelperApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DublinBikeID { get; set; }
         public string Location { get; set; }
-        public int Available { get; set; }
+        //public int Available { get; set; }
         public double Lat { get; set; }
         public double Lng { get; set; }
     }

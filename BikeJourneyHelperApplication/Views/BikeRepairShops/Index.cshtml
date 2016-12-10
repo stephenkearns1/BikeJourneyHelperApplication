@@ -29,30 +29,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShopName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpeningHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lng)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BikeRepairShopID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BikeRepairShopID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BikeRepairShopID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lng)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BikeRepairShopID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BikeRepairShopID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BikeRepairShopID })
+            </td>
+        </tr>
+    }
 
 </table>
 <section class="bg-primary" id="about">
@@ -81,26 +82,21 @@
     </div>
 </section>
 <section class="bg-white" id="map_section">
-    <div class="container">
-        <div class="row">
-
-
-
-            <div class="col-lg-8" id="map_canvas">
-
-
-            </div>
-
-            <div class="col-lg-4" id="right-panel">
-
-
-            </div>
 
 
 
 
-        </div>
+    <div class="col-lg-8" id="map_canvas">
+
+
     </div>
+
+    <div class="col-lg-4" id="right-panel">
+
+
+    </div>
+
+
 </section>
 
 
@@ -110,11 +106,14 @@
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <script type="text/javascript">
 
-        /* $(document).ready(function () {
 
-             MapIntialize();
+    $(document).ready(function () {
 
-         }); */
+        $("#map_canvas").css("width", "100%");
+        $('#right-panel').css("width", "0px");
+
+
+    });
         var directionServices;
         var directionDisplay;
         var userPosition;
@@ -211,6 +210,9 @@
 
                 if (status === 'OK') {
                     console.log(response);
+                    $("#map_canvas").css("width", "60%");
+                    $('#right-panel').css("width", "40%");
+                    $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
 
@@ -248,8 +250,8 @@
                     console.log(resp);
                     alert(resp);
 
-                    // Do something useful with the data:
-                    //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+                }, error: function (jqXHR, status, err) {
+                    alert("Repair Shop does not exist");
                 }
             });
 
@@ -263,3 +265,4 @@
         async defer></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsAesXr_ahVup11biiPr5y5qPr3uMRI1A&callback=MapIntialize"
         async defer></script>
+

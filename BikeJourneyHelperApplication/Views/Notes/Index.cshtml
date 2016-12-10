@@ -46,7 +46,7 @@
         }
 
     </table>
-</div> 
+</div>
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
@@ -73,7 +73,7 @@
     });
 
     function GetDetailedInfo(noteid) {
-        
+
         var noteId = { 'NoteID': noteid };
         $.ajax({
             url: '@Url.Action("GetDetailedInfo", "Notes")',
@@ -87,7 +87,7 @@
             success: function (resp) {
 
                 $("#note_content").text(resp.Content);
-               
+
 
                 // Do something useful with the data:
                 //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");

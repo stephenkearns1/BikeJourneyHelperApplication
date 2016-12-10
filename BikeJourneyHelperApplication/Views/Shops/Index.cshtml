@@ -80,7 +80,7 @@
             </div>
 
             <div class="col-lg-8 col-lg-offset-2 text-center">
-
+                <hr class="light">
                 <a href="#map_section" id="getdirection_btn" onclick="GetSearchedShopLocation();" class="page-scroll btn btn-default btn-xl sr-button">Get Directions</a>
             </div>
 
@@ -88,26 +88,24 @@
     </div>
 </section>
 <section class="bg-white" id="map_section">
-    <div class="container">
-        <div class="row">
-
-
-
-            <div class="col-lg-8" id="map_canvas">
-
-
-            </div>
-
-            <div class="col-lg-4" id="right-panel">
-
-
-            </div>
 
 
 
 
-        </div>
+    <div class="col-lg-8" id="map_canvas">
+
+
     </div>
+
+    <div class="col-lg-4" id="right-panel">
+
+
+    </div>
+
+
+
+
+
 </section>
 
 
@@ -117,11 +115,14 @@
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <script type="text/javascript">
 
-        /* $(document).ready(function () {
+    $(document).ready(function () {
 
-             MapIntialize();
+        $("#map_canvas").css("width", "100%");
+        $('#right-panel').css("width", "0px");
 
-         }); */
+
+    });
+
         var directionServices;
         var directionDisplay;
         var userPosition;
@@ -217,7 +218,11 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
+                    
                     console.log(response);
+                    $("#map_canvas").css("width", "60%");
+                    $('#right-panel').css("width", "40%");
+                    $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
 
@@ -244,7 +249,7 @@
                     alert(xhr.responseText);
                 },
                 success: function (resp) {
-
+                   
                     // Hide the "busy" gif:
                     //   $("#divProcessing").hide();
                     var userLng = resp.Lat;
@@ -257,6 +262,8 @@
 
                     // Do something useful with the data:
                     //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+                },error: function (jqXHR, status, err) {
+                    alert("Shops does not exist");
                 }
             });
 

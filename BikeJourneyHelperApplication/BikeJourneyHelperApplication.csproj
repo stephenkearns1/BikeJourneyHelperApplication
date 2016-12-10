@@ -200,6 +200,18 @@
     <Compile Include="Migrations\201612021147083_AddName.Designer.cs">
       <DependentUpon>201612021147083_AddName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612092217360_AddTest.cs" />
+    <Compile Include="Migrations\201612092217360_AddTest.Designer.cs">
+      <DependentUpon>201612092217360_AddTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612092321159_AddTest2.cs" />
+    <Compile Include="Migrations\201612092321159_AddTest2.Designer.cs">
+      <DependentUpon>201612092321159_AddTest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612100225274_RemoveAvailBikes.cs" />
+    <Compile Include="Migrations\201612100225274_RemoveAvailBikes.Designer.cs">
+      <DependentUpon>201612100225274_RemoveAvailBikes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BikeRepairShop.cs" />
@@ -250,8 +262,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -292,9 +302,11 @@
     <Content Include="Content\less\creative.less" />
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\variables.less" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\creative.js" />
     <Content Include="Scripts\creative.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -305,7 +317,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -388,6 +400,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612021147083_AddName.resx">
       <DependentUpon>201612021147083_AddName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612092217360_AddTest.resx">
+      <DependentUpon>201612092217360_AddTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612092321159_AddTest2.resx">
+      <DependentUpon>201612092321159_AddTest2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612100225274_RemoveAvailBikes.resx">
+      <DependentUpon>201612100225274_RemoveAvailBikes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

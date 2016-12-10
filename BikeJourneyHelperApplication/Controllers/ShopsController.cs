@@ -42,7 +42,9 @@ namespace BikeJourneyHelperApplication.Controllers
         {
             Thread.Sleep(1000);
             Shop shop = db.Shops.FirstOrDefault(s => s.ShopID == model.ShopID);
-            return Json(shop, "json");
+          
+                return Json(shop, "json");
+            
 
         }
 
