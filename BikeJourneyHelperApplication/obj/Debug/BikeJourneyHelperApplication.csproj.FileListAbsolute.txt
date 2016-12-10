@@ -235,3 +235,9 @@ C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourney
 C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.dll
 C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.pdb
 C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Debug\BikeJourneyHelperApplication.Migrations.RemoveAvailBikes.resources
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Net.Http.Formatting.dll
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Web.Http.dll
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Web.Http.WebHost.dll
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Net.Http.Formatting.xml
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Web.Http.xml
+C:\Users\kearn\Desktop\Final Upload AIT\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\System.Web.Http.WebHost.xml

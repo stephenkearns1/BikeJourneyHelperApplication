@@ -94,3 +94,17 @@ textarea {
     background-color:#222!important;
     color:white;
 }
+
+/*
+    custom section for real time info
+*/
+
+#real_time_info_bikes{
+    background-color:#222!important;
+    color:white;
+    
+}
+
+.pCustStyle{
+   color:white !important;
+}

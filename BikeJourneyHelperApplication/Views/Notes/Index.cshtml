@@ -74,12 +74,14 @@
 
     function GetDetailedInfo(noteid) {
 
-        var noteId = { 'NoteID': noteid };
+        //var noteId = { 'NoteID': noteid };
+        var url = "../api/Notes/" + noteid;
         $.ajax({
-            url: '@Url.Action("GetDetailedInfo", "Notes")',
-            type: "POST",
+           // url: '@Url.Action("GetDetailedInfo", "Notes")',
+            url: url,
+            type: "GET",
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(noteId),
+            //data: JSON.stringify(noteId),
             dataType: "json",
             error: function (xhr, status, error) {
                 alert(xhr.responseText);
@@ -91,6 +93,8 @@
 
                 // Do something useful with the data:
                 //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+            }, error: function (jqXHR, status, err) {
+                alert("An error occured" + err);
             }
         });
 

@@ -161,7 +161,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../../Content/img/header.jpg');
+  background-image: url('../../Content/img/SnowyBike.jpg') !important;
   text-align: center;
   color: white;
 }
