@@ -101,6 +101,30 @@
                 <p class="pCustStyle" id="bikeStation_last-update"></p>
             </div>
 
+
+
+            <table class="table table-responsive table-hover" id="realtime">
+                <thead>
+                    <tr>
+                        <th> Station Name:</th>
+                        <th>Available Bike Stands</th>
+                        <th> Available Number of Bikes</th>
+                        <th> Banking </th>
+                        <th> Number of Bike stands</th>
+                        <th> Bonus </th>
+                        <th> Last update </th>
+                    </tr>
+                    <tr id="info_tr">
+                        <td id="stationName_col"></td>
+                        <td id="availBikeStands_col"></td>
+                        <td id="availNumBikes_col"></td>
+                        <td id="banking_col"></td>
+                        <td id="numBikeStand_col"></td>
+                        <td id="bonus_col"></td>
+                        <td id="lastUpdate_col"></td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </section>
@@ -280,6 +304,15 @@
                 //gets the date and time of last update
                 var date = new Date(resp.last_update);
                 alert(date);
+                document.getElementById('stationName_col').innerHTML =  resp.name;
+                document.getElementById('availBikeStands_col').innerHTML = resp.available_bike_stands;
+                document.getElementById('availNumBikes_col').innerHTML =  resp.available_bikes;
+                document.getElementById('banking_col').innerHTML =  resp.banking;
+                document.getElementById('numBikeStand_col').innerHTML = resp.bike_stands;
+                document.getElementById('bonus_col').innerHTML = resp.bonus;
+                document.getElementById('lastUpdate_col').innerHTML = date;
+              
+                /*
                 $("#bikeStation_name").text("Station name:" + resp.name);
                 $("#bikeStation_available_stands").text("Avaiable bike stands:" + resp.available_bike_stands);
                 $("#bikeStation_available_bikes").text("Avaiable bikes:" + resp.available_bikes);
@@ -287,7 +320,7 @@
                 $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
                 $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
                 $("#bikeStation_last-update").text("Lasted updated: " + date);
-
+                */
             }
         });
     }
