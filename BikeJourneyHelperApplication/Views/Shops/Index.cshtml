@@ -16,6 +16,10 @@
 
     <table class="table">
         <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ShopID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShopName)
             </th>
@@ -25,18 +29,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.OpeningHours)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lng)
-            </th>
+            
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopID)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ShopName)
                 </td>
@@ -46,12 +48,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OpeningHours)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lng)
-                </td>
+                
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ShopID }) |
@@ -62,19 +59,19 @@
 
     </table>
 </div>
-<section class="bg-primary" id="about">
+<section class="bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">We've got what you need!</h2>
+                <h2 class="section-heading" contenteditable="true">Search for your favorite shops</h2>
                 <hr class="light">
-                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-
+                <p class="text-faded">To get bicycling directions and journey time to your favorite shops, just enter in the shop ID that relates to the shop in the list above!</p>
+                <hr class="light">
             </div>
 
-            <div class="col-lg-4 col-lg-offset-4">
+            <div class="col-lg-12">
 
-                <input type="text" id="shopid" placeholder="shopid" />
+                <input type="text" id="shopid" placeholder="Enter Shop ID" class="searchBox" />
 
 
             </div>
@@ -87,18 +84,31 @@
         </div>
     </div>
 </section>
-<section class="bg-white" id="map_section">
+<section id="map_section">
 
 
+    <div class="row">
+        <div class="col-lg-12">
 
+            <div id="map_canvas"> </div>
 
-    <div class="col-lg-8" id="map_canvas">
+        </div>
 
 
     </div>
 
-    <div class="col-lg-4" id="right-panel">
 
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div id="right-panel"> </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -110,7 +120,6 @@
 
 
 
-
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <script type="text/javascript">
@@ -118,8 +127,24 @@
     $(document).ready(function () {
 
         $("#map_canvas").css("width", "100%");
-        $('#right-panel').css("width", "0px");
+        $('#right-panel').css("width", "100%");
+        $('#right-panel').css("height", "100%");
 
+        // open main page when pages are section within the index page
+        $('#about_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+        $('#services_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+
+        $('#Contact_page').click(function () {
+            window.location.href = "../Home/Index";
+         
+        });
+        
 
     });
 
@@ -146,7 +171,7 @@
             };
 
 
-
+            
 
             map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
             //map.setCenter(userPosition);
@@ -220,8 +245,7 @@
                 if (status === 'OK') {
                     
                     console.log(response);
-                    $("#map_canvas").css("width", "60%");
-                    $('#right-panel').css("width", "40%");
+                   
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 

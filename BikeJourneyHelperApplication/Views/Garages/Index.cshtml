@@ -13,23 +13,22 @@
     <table class="table">
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.GarageID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.OpeningHours)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PumpsAvailable)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lng)
-            </th>
+          
             <th></th>
         </tr>
 
@@ -37,23 +36,22 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.GarageID)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.OpeningHours)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PumpsAvailable)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lng)
-                </td>
+              
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.GarageID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.GarageID }) |
@@ -69,40 +67,56 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">We've got what you need!</h2>
+                <h2 class="section-heading">Search for your favourite garages&nbsp;</h2>
                 <hr class="light">
-                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <p class="text-faded">To get custom bicycling&nbsp;directions and journey estimate, enter the garage Id from the list of garages &nbsp;above and enter it below!</p>
 
             </div>
 
             <div class="col-lg-4 col-lg-offset-4">
 
-                <input type="text" id="shopid" placeholder="shopid" />
+                <input type="text" id="garageid" placeholder="Enter Garage ID" class="searchBox" />
 
 
             </div>
 
             <div class="col-lg-8 col-lg-offset-2 text-center">
-
+                <hr class="light">
                 <a href="#map_section" id="getdirection_btn" onclick="GetSearchedShopLocation();" class="page-scroll btn btn-default btn-xl sr-button">Get Directions</a>
             </div>
 
         </div>
     </div>
 </section>
-<section class="bg-white" id="map_section">
+<section id="map_section">
 
 
+    <div class="row">
+        <div class="col-lg-12">
 
-    <div class="col-lg-8" id="map_canvas">
+            <div id="map_canvas"> </div>
+
+        </div>
 
 
     </div>
 
-    <div class="col-lg-4" id="right-panel">
 
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div id="right-panel"> </div>
+
+            </div>
+
+        </div>
 
     </div>
+
+
 
 
 
@@ -117,8 +131,25 @@
 
     $(document).ready(function () {
 
+        //makes the map span the width of the viewport so tha when searched it will give a drop in effect when display directions 
         $("#map_canvas").css("width", "100%");
-        $('#right-panel').css("width", "0px");
+        $('#right-panel').css("width", "100%");
+        $('#right-panel').css("height", "100%");
+
+        // open main page when pages are section within the index page
+        $('#about_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+        $('#services_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+
+        $('#Contact_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
 
 
     });
@@ -219,8 +250,6 @@
 
                 if (status === 'OK') {
                     console.log(response);
-                    $("#map_canvas").css("width", "60%");
-                    $('#right-panel').css("width", "40%");
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -236,7 +265,7 @@
 
         function GetSearchedShopLocation() {
             window.alert("Made it to getLocation");
-            var shopID = { 'GarageID': $('#shopid').val() };
+            var shopID = { 'GarageID': $('#garageid').val() };
             console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "Garages")',

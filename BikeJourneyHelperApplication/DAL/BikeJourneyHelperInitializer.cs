@@ -35,9 +35,12 @@ namespace BikeJourneyHelperApplication.DAL
 
             var bikeRepairShops = new List<BikeRepairShop>
             {
-                new BikeRepairShop {ShopName ="MikesBikes", Address = "Dun Laoghaire", OpeningHours = "9:00 - 19:00" , Lat = 53.55632, Lng = -6.85757 },
-                new BikeRepairShop {ShopName ="BikesRus", Address = "Dun Laoghaire", OpeningHours = "9:00 - 19:00" , Lat = 53.55632, Lng = -6.85757 },
-                new BikeRepairShop {ShopName ="Bikes", Address = "Dun Laoghaire", OpeningHours = "9:00 - 19:00" , Lat = 53.55632, Lng = -6.85757},
+                new BikeRepairShop {ShopName ="MikesBikes", Address = "Dun Laoghaire", Number = "01234356", OpeningHours = "9:00 - 19:00" , Lat = 53.2919, Lng = -6.1366 },
+                new BikeRepairShop {ShopName ="BikesRus", Address = "Dun Laoghaire",Number = "012564736", OpeningHours = "9:00 - 19:00" , Lat = 53.55632, Lng = -6.85757 },
+                new BikeRepairShop {ShopName ="Halfords", Address = "Dun Laoghaire",Number = "01348546", OpeningHours = "9:00 - 19:00" , Lat = 53.2512, Lng = -6.1868},
+                new BikeRepairShop {ShopName ="RepairsOnWheels", Address = "Dun Laoghaire", Number = "01232356", OpeningHours = "9:00 - 19:00" , Lat = 53.2919, Lng = -6.1366 },
+                new BikeRepairShop {ShopName ="Fixes", Address = "Dun Laoghaire",Number = "012564746", OpeningHours = "9:00 - 19:00" , Lat = 53.55632, Lng = -6.85757 },
+                new BikeRepairShop {ShopName ="Commute", Address = "Dun Laoghaire",Number = "01348546", OpeningHours = "9:00 - 19:00" , Lat = 53.2512, Lng = -6.1868}
 
 
             };

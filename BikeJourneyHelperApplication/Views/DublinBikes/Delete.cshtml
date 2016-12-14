@@ -19,13 +19,6 @@
             @Html.DisplayFor(model => model.Location)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Available)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Available)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Lat)
@@ -49,7 +42,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

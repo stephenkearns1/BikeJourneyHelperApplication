@@ -1,18 +1,23 @@
-﻿html,body {
-    width:100%;
-    margin:0;
-    padding:0;
+﻿html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -28,83 +33,130 @@ textarea {
     max-width: 280px;
 }
 
+/* Custom nav */
+#mainNav {
+    background-color: #154890 !important;
+    color: white !important;
+}
+
+.navbar-default {
+    background-color: #154890 !important;
+    color: white !important;
+}
+
+#myFooter {
+    background-color: #154890 !important;
+    color: white !important;
+    height: 200px;
+}
+
+/* Custom nav > li colors to work with mainNav*/
+.navbar-default .navbar-nav > li > a {
+    color: white !important;
+}
 
 
-#map_canvas{
 
+#map_canvas {
     height: 400px;
-    padding:0px;
-    
-    
-
+    padding: 0px;
 }
 
 
 
 
-#right-panel{
-
-    height: 0px;
-    padding-left:13px;
-    overflow:hidden;
+#right-panel {
+   
+    overflow: scroll !important; 
 }
 
 
 /*Map section style*/
-#map_section{
-   height:400px !important;
-   background-color:white !important;
-   padding:0 !important; 
-  
+#map_section {
+    hite !important;
+    padding: 0 !important;
 }
 
-#shopid{
-    width:100%;
-    color:black !important;
-    padding:5px;
-    
+/* Input box for search records by id*/
+
+
+.searchBox {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: blue !important;
+    padding: 5px;
+    text-align: center;
 }
 
-#origin_location{
-    width:100%!important;
-    padding:10px!important;
 
+
+#origin_location {
+    width: 100% !important;
+    padding: 10px !important;
 }
 
-#destination{
-    width:100%;
-    padding:10px;
-  
+#destination {
+    width: 100%;
+    padding: 10px;
 }
 
-.fromgroupStyle{
-    width:100%!important;
-    padding:10px!important;
+.fromgroupStyle {
+    width: 100% !important;
+    padding: 10px !important;
 }
 
-#servicesTitle{
-    
+#servicesTitle {
 }
 
-#map_container{
-    width:100%;
-    }
+#map_container {
+    width: 100%;
+}
 
-#contact{
-    background-color:#222!important;
-    color:white;
+#contact {
+    background-color: #222 !important;
+    color: white;
 }
 
 /*
     custom section for real time info
 */
 
-#real_time_info_bikes{
-    background-color:#222!important;
-    color:white;
-    
+
+#real_time_info_bikes {
+    background-color: #222 !important;
+    color: white;
 }
 
-.pCustStyle{
-   color:white !important;
+.pCustStyle {
+    color: white !important;
+}
+
+#footPadding {
+    padding: 15px;
+}
+
+
+#centerElem {
+    margin: 0;
+}
+
+
+
+/* Spinning social buttons code*/
+#social-fb:hover {
+    color: #3B5998;
+}
+
+#social-tw:hover {
+    color: #4099FF;
+}
+
+#social-gp:hover {
+    color: #d34836;
+}
+
+#social-em:hover {
+    color: #f39c12;
 }

@@ -10,8 +10,10 @@ namespace BikeJourneyHelperApplication.Models
         public int BikeRepairShopID { get; set; }
         public string ShopName { get; set; }
         public string Address { get; set; }
+        public string Number { get; set; }
         public string OpeningHours { get; set; }
         public double Lat { get; set; }
         public double Lng { get; set; }
+      
     }
 }

@@ -201,29 +201,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611290104318_InitialCreate.cs" />
-    <Compile Include="Migrations\201611290104318_InitialCreate.Designer.cs">
-      <DependentUpon>201611290104318_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612020955413_AddUsername.cs" />
-    <Compile Include="Migrations\201612020955413_AddUsername.Designer.cs">
-      <DependentUpon>201612020955413_AddUsername.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612021147083_AddName.cs" />
-    <Compile Include="Migrations\201612021147083_AddName.Designer.cs">
-      <DependentUpon>201612021147083_AddName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612092217360_AddTest.cs" />
-    <Compile Include="Migrations\201612092217360_AddTest.Designer.cs">
-      <DependentUpon>201612092217360_AddTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612092321159_AddTest2.cs" />
-    <Compile Include="Migrations\201612092321159_AddTest2.Designer.cs">
-      <DependentUpon>201612092321159_AddTest2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612100225274_RemoveAvailBikes.cs" />
-    <Compile Include="Migrations\201612100225274_RemoveAvailBikes.Designer.cs">
-      <DependentUpon>201612100225274_RemoveAvailBikes.cs</DependentUpon>
+    <Compile Include="Migrations\201612140016493_InitialCreate.cs" />
+    <Compile Include="Migrations\201612140016493_InitialCreate.Designer.cs">
+      <DependentUpon>201612140016493_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -409,23 +389,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611290104318_InitialCreate.resx">
-      <DependentUpon>201611290104318_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612020955413_AddUsername.resx">
-      <DependentUpon>201612020955413_AddUsername.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612021147083_AddName.resx">
-      <DependentUpon>201612021147083_AddName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612092217360_AddTest.resx">
-      <DependentUpon>201612092217360_AddTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612092321159_AddTest2.resx">
-      <DependentUpon>201612092321159_AddTest2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612100225274_RemoveAvailBikes.resx">
-      <DependentUpon>201612100225274_RemoveAvailBikes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612140016493_InitialCreate.resx">
+      <DependentUpon>201612140016493_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
