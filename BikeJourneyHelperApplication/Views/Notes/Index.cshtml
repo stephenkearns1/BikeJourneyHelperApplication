@@ -87,9 +87,11 @@
         });
     });
 
+    /*
+       Searchs for the note using the web api, based on the item the user has hovered over,
+       It then gets the notes content and displays this in page
+     */ 
     function GetDetailedInfo(noteid) {
-
-        //var noteId = { 'NoteID': noteid };
         var url = "../api/Notes/" + noteid;
         $.ajax({
            // url: '@Url.Action("GetDetailedInfo", "Notes")',
@@ -103,11 +105,9 @@
             },
             success: function (resp) {
 
+                //display the note 
                 $("#note_content").text(resp.Content);
 
-
-                // Do something useful with the data:
-                //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
             }, error: function (jqXHR, status, err) {
                 alert("An error occured" + err);
             }

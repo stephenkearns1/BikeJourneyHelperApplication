@@ -162,14 +162,11 @@
             var directionDisplay = new google.maps.DirectionsRenderer;
             var userPosition;
             var travel_mode = 'BICYCLING';
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
+          
+            //sets up the map options 
             var mapOptions = {
 
                 zoom: 14,
-               // center: { lat: 53.3498, lng: -6.2603 },
-                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: false
             };
@@ -181,6 +178,7 @@
                         lng: position.coords.longitude
                     };
 
+                    //centres the focus of the map on the users location 
                     map.setCenter(pos);
 
                 }, function () {
@@ -253,14 +251,6 @@
             });
 
 
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
 
 
             function calculateUserRouteAndDisplay(directionServices, directionDisplay, location_place_id, destination_place_id, travel_mode) {

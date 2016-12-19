@@ -118,9 +118,6 @@
 
 </section>
 
-
-
-<!-- Script init the google maps api and places the map within the map_canvas div-->
 <!-- Script init the google maps api and places the map within the map_canvas div-->
 <script type="text/javascript">
 
@@ -156,22 +153,11 @@
             directionServices = new google.maps.DirectionsService();
             directionDisplay = new google.maps.DirectionsRenderer();
             var testSearch = document.getElementById("searchBtn");
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
-
-            //get the user geo cordinates
-
             var mapOptions = {
 
                 zoom: 14,
-                //center: userPosition,
-                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 mapTypeControl: false
             };
-
-
-            
 
             map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
             //map.setCenter(userPosition);
@@ -199,39 +185,9 @@
             }
 
 
-
-
-            // map.controls[google.maps.ControlPosition.TOP_LEFT].push('destination');
-
-
-
-
-
-
-           /* document.getElementById("getdirection_btn").addEventListener("click", function(){
-                GetSearchedShopLocation();
-            }); */
-
-
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
-
-
-
         }
 
         function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
-
-            window.alert('made it to calculate routes');
-
-            //var userPos = getUserLocation();
-            console.log("users destinaton geo: " + userDestination);
 
             directionServices.route({
 
@@ -242,10 +198,7 @@
 
             }, function (response, status) {
 
-                if (status === 'OK') {
-                    
-                    console.log(response);
-                   
+                if (status === 'OK') { 
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -260,7 +213,6 @@
         }
 
         function GetSearchedShopLocation() {
-            window.alert("Made it to getLocation");
             var shopID = { 'ShopID': $('#shopid').val() };
             console.log(shopID);
             $.ajax({
@@ -273,21 +225,16 @@
                     alert(xhr.responseText);
                 },
                 success: function (resp) {
-                   
-                    // Hide the "busy" gif:
-                    //   $("#divProcessing").hide();
+                  
                     var userLng = resp.Lat;
                     var userLat = resp.Lng;
                     var userDestination = new google.maps.LatLng(parseFloat(userLng), parseFloat(userLat));
                     //var userDestination = new google.maps.LatLng(resp.Lat, resp.Lng);
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
-                    console.log(resp);
-                    alert(resp);
+                 
 
-                    // Do something useful with the data:
-                    //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
                 },error: function (jqXHR, status, err) {
-                    alert("Shops does not exist");
+                    alert("Shop does not exist");
                 }
             });
 
