@@ -195,7 +195,6 @@
 
                     userPosition = pos;
                     map.setCenter(userPosition);
-                    console.log(userPosition);
 
                 }, function () {
                     alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
@@ -212,11 +211,6 @@
 
         function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
 
-            window.alert('made it to calculate routes');
-
-            //var userPos = getUserLocation();
-            console.log("users destinaton geo: " + userDestination);
-
             directionServices.route({
 
                 origin: userPosition,
@@ -227,7 +221,6 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
-                    console.log(response);
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -242,9 +235,7 @@
         }
 
         function GetSearchedShopLocation() {
-            window.alert("Made it to getLocation");
             var shopID = { 'GarageID': $('#garageid').val() };
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "Garages")',
                 type: "POST",
@@ -263,8 +254,7 @@
                     var userDestination = new google.maps.LatLng(parseFloat(userLng), parseFloat(userLat));
                     //var userDestination = new google.maps.LatLng(resp.Lat, resp.Lng);
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
-                    console.log(resp);
-                    alert(resp);
+               
 
                 },error: function (jqXHR, status, err) {
                     alert("Garage does not exist");

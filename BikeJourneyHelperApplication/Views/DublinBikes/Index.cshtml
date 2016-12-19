@@ -53,7 +53,7 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">We've got what you need!</h2>
                 <hr class="light">
-                <p class="text-faded">To get Real-time information for the bike stations in the list above, just enter the stations ID below, and hit the Get directions button.</p>
+                <p class="text-faded">To get Real time information for the bike stations in the list above, just enter the stations ID below, and hit the Get directions button!</p>
                 <hr class="light">
             </div>
 
@@ -107,9 +107,7 @@
 </section>
 <section class="" id="real_time_info_bikes">
     <div class="container">
-     
         <div class="row">
-        
             <table class="table table-responsive table-hover" id="realtime">
                 <thead>
                     <tr>
@@ -203,17 +201,9 @@
             directionServices = new google.maps.DirectionsService();
             directionDisplay = new google.maps.DirectionsRenderer();
             var testSearch = document.getElementById("searchBtn");
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
-
-            //get the user geo cordinates
-
             var mapOptions = {
 
                 zoom: 14,
-                //center: userPosition,
-                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 mapTypeControl: false
             };
 
@@ -236,7 +226,7 @@
 
                     userPosition = pos;
                     map.setCenter(userPosition);
-                 
+                  
 
                 }, function () {
                     alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
@@ -265,7 +255,6 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
-                    console.log(response);
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -288,7 +277,6 @@
         function GetSearchedShopLocation() {
             var shopID = { 'DublinBikeID': $('#bikestationid').val() };
             var stationNum = $('#bikestationid').val();
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "DublinBikes")',
                 type: "POST",
@@ -309,9 +297,6 @@
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
                     GetRealTimeStationInfo(stationNum);
 
-                   
-
-                   
                 }, error: function (jqXHR, status, err) {
                     alert("Station does not exist");
                 }
@@ -332,10 +317,9 @@
                 alert(xhr.responseText);
             },
             success: function (resp) {
-                
                 //gets the date and time of last update
                 var date = new Date(resp.last_update);
-                alert(date);
+               
 
                 /*
                   populates the single row of the table with the searched stations real time information
@@ -349,12 +333,13 @@
                 document.getElementById('bonus_col').innerHTML = resp.bonus;
                 document.getElementById('lastUpdate_col').innerHTML = date;
               
-               
+              
             }
         });
     }
 
 
+   
 
 </script>
 

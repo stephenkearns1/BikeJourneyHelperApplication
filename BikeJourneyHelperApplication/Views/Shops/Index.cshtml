@@ -175,7 +175,6 @@
 
                     userPosition = pos;
                     map.setCenter(userPosition);
-                    console.log(userPosition);
 
                 }, function () {
                     alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
@@ -214,7 +213,6 @@
 
         function GetSearchedShopLocation() {
             var shopID = { 'ShopID': $('#shopid').val() };
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "Shops")',
                 type: "POST",

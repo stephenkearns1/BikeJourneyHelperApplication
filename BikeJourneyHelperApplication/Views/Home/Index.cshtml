@@ -255,8 +255,6 @@
 
             function calculateUserRouteAndDisplay(directionServices, directionDisplay, location_place_id, destination_place_id, travel_mode) {
 
-                window.alert('made it to calculate routes');
-
                 if (!location_place_id || !destination_place_id) {
                     return;
                 } else {
@@ -270,10 +268,9 @@
 
 
                     }, function (response, status) {
-                        console.log(response);
+     
                         if (status === 'OK') {
-                           // $("#map_canvas").css("width", "60%");
-                            //$('#right-panel').css("width", "100%");
+                         
                             $('#right-panel').css("height", "400px");
                             directionDisplay.setDirections(response);
                         } else {
