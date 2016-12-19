@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="BikeJourneyBuddyApp" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\kearn\\Desktop\\Final\ Upload\ AIT\ Copy\\SecondCopy\\BikeJourneyHelperApplication\\BikeJourneyHelperApplication\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\kearn\\Desktop\\Final\ Upload\ AIT\ Copy\\SecondCopy\\BikeJourneyHelperApplication\\BikeJourneyHelperApplication\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="BikeJourneyHelperContext-Web.config Connection String" description="" value="Server=tcp:bikejourneybuddyapp.database.windows.net,1433;Initial Catalog=BikeJourneyBuddyApp;Persist Security Info=False;User ID=StephenKearns;Password=Password2016;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\kearn\\Desktop\\Final\ Upload\ AIT\ Copy\\SecondCopy\\BikeJourneyHelperApplication\\BikeJourneyHelperApplication\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BikeJourneyHelperContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=tcp:bikejourneybuddyapp.database.windows.net,1433;Initial Catalog=BikeJourneyBuddyApp;Persist Security Info=False;User ID=StephenKearns;Password=Password2016;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\kearn\\Desktop\\Final\ Upload\ AIT\ Copy\\SecondCopy\\BikeJourneyHelperApplication\\BikeJourneyHelperApplication\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

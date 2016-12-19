@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace BikeJourneyHelperApplication.Controllers
 {
+
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

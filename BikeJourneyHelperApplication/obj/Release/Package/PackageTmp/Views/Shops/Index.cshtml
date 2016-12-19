@@ -1,0 +1,303 @@
+﻿@model IEnumerable<BikeJourneyHelperApplication.Models.Shop>
+
+<div class="container">
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Bike Shops</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ShopID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningHours)
+            </th>
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpeningHours)
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ShopID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ShopID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ShopID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<section class="bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading" contenteditable="true">Search for your favorite shops</h2>
+                <hr class="light">
+                <p class="text-faded">To get bicycling directions and journey time to your favorite shops, just enter in the shop ID that relates to the shop in the list above!</p>
+                <hr class="light">
+            </div>
+
+            <div class="col-lg-12">
+
+                <input type="text" id="shopid" placeholder="Enter Shop ID" class="searchBox" />
+
+
+            </div>
+
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <hr class="light">
+                <a href="#map_section" id="getdirection_btn" onclick="GetSearchedShopLocation();" class="page-scroll btn btn-default btn-xl sr-button">Get Directions</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section id="map_section">
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div id="map_canvas"> </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div id="right-panel"> </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</section>
+
+
+
+<!-- Script init the google maps api and places the map within the map_canvas div-->
+<!-- Script init the google maps api and places the map within the map_canvas div-->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#map_canvas").css("width", "100%");
+        $('#right-panel').css("width", "100%");
+        $('#right-panel').css("height", "100%");
+
+        // open main page when pages are section within the index page
+        $('#about_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+        $('#services_page').click(function () {
+            window.location.href = "../Home/Index";
+
+        });
+
+        $('#Contact_page').click(function () {
+            window.location.href = "../Home/Index";
+         
+        });
+        
+
+    });
+
+        var directionServices;
+        var directionDisplay;
+        var userPosition;
+        var map;
+        function MapIntialize() {
+            directionServices = new google.maps.DirectionsService();
+            directionDisplay = new google.maps.DirectionsRenderer();
+            var testSearch = document.getElementById("searchBtn");
+            //tells the api to use the new UI
+            // google.maps.visualRefresh = true;
+            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
+
+            //get the user geo cordinates
+
+            var mapOptions = {
+
+                zoom: 14,
+                //center: userPosition,
+                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+                mapTypeControl: false
+            };
+
+
+            
+
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            //map.setCenter(userPosition);
+            directionDisplay.setMap(map);
+            directionDisplay.setPanel(document.getElementById('right-panel'));
+
+
+            //get the geo corridnates of the user and create and focus the map
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    userPosition = pos;
+                    map.setCenter(userPosition);
+                    console.log(userPosition);
+
+                }, function () {
+                    alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
+                });
+            } else {
+                alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
+            }
+
+
+
+
+            // map.controls[google.maps.ControlPosition.TOP_LEFT].push('destination');
+
+
+
+
+
+
+           /* document.getElementById("getdirection_btn").addEventListener("click", function(){
+                GetSearchedShopLocation();
+            }); */
+
+
+            //set up the the event handler to search for route of
+            /*  var onChangeEventHandler = function () {
+                  window.alert('Made it to onChangeHandler');
+                  //call the calculate route function
+                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
+              }; */
+
+            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
+
+
+
+        }
+
+        function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
+
+            window.alert('made it to calculate routes');
+
+            //var userPos = getUserLocation();
+            console.log("users destinaton geo: " + userDestination);
+
+            directionServices.route({
+
+                origin: userPosition,
+                destination: userDestination,
+                travelMode: 'BICYCLING'
+
+
+            }, function (response, status) {
+
+                if (status === 'OK') {
+                    
+                    console.log(response);
+                   
+                    $('#right-panel').css("height", "400px");
+                    directionDisplay.setDirections(response);
+
+
+                } else {
+                    window.alert('Directions request failed due to' + status);
+                }
+
+            });
+
+
+        }
+
+        function GetSearchedShopLocation() {
+            window.alert("Made it to getLocation");
+            var shopID = { 'ShopID': $('#shopid').val() };
+            console.log(shopID);
+            $.ajax({
+                url: '@Url.Action("GetLocation", "Shops")',
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(shopID),
+                dataType: "json",
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                },
+                success: function (resp) {
+                   
+                    // Hide the "busy" gif:
+                    //   $("#divProcessing").hide();
+                    var userLng = resp.Lat;
+                    var userLat = resp.Lng;
+                    var userDestination = new google.maps.LatLng(parseFloat(userLng), parseFloat(userLat));
+                    //var userDestination = new google.maps.LatLng(resp.Lat, resp.Lng);
+                    calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
+                    console.log(resp);
+                    alert(resp);
+
+                    // Do something useful with the data:
+                    //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
+                },error: function (jqXHR, status, err) {
+                    alert("Shops does not exist");
+                }
+            });
+
+        }
+
+
+
+</script>
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsAesXr_ahVup11biiPr5y5qPr3uMRI1A&libraries=places&callback=MapIntialize"
+        async defer></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsAesXr_ahVup11biiPr5y5qPr3uMRI1A&callback=MapIntialize"
+        async defer></script>

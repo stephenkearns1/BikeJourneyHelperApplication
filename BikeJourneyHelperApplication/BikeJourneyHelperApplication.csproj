@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44341</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201612140016493_InitialCreate.Designer.cs">
       <DependentUpon>201612140016493_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612192049205_ChangeSeed.cs" />
+    <Compile Include="Migrations\201612192049205_ChangeSeed.Designer.cs">
+      <DependentUpon>201612192049205_ChangeSeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BikeRepairShop.cs" />
@@ -303,6 +307,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\creative.js" />
     <Content Include="Scripts\creative.min.js" />
+    <None Include="Properties\PublishProfiles\BikeJourneyBuddyApp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BikeJourneyBuddyApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -392,6 +398,9 @@
     <EmbeddedResource Include="Migrations\201612140016493_InitialCreate.resx">
       <DependentUpon>201612140016493_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612192049205_ChangeSeed.resx">
+      <DependentUpon>201612192049205_ChangeSeed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -411,7 +420,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62206</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62206/</IISUrl>
+          <IISUrl>https://localhost:44341/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

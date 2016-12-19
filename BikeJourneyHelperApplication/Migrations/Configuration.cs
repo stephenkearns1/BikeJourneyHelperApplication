@@ -31,9 +31,9 @@ namespace BikeJourneyHelperApplication.Migrations
 
             var garages = new List<Garage>
             {
-                new Garage { Name = "Texaco", Address = "Ballyogan road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f },
-                new Garage { Name = "Maxoil", Address = "Sallynoggin road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f },
-                new Garage { Name = "On the run", Address = "Ballyogan road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f }
+                new Garage { Name = "Texaco", Address = "1 Tallaght road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f },
+                new Garage { Name = "Maxoil", Address = "65 Sallynoggin road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f },
+                new Garage { Name = "On the run", Address = "89 Ballyogan road",OpeningHours = "09:00 - 18:00", PumpsAvailable = "Yes" ,  Lat =53.340962f, Lng = -6.262287f }
 
             };
 
