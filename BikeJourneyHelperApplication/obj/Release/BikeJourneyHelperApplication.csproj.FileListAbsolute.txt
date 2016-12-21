@@ -80,3 +80,7 @@ C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplica
 C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Release\BikeJourneyHelperApplication.dll
 C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Release\BikeJourneyHelperApplication.pdb
 C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\obj\Release\BikeJourneyHelperApplication.Migrations.ChangeSeed.resources
+C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\PagedList.dll
+C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\PagedList.Mvc.dll
+C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\PagedList.xml
+C:\Users\kearn\Desktop\Final Upload AIT Copy\SecondCopy\BikeJourneyHelperApplication\BikeJourneyHelperApplication\bin\PagedList.Mvc.xml

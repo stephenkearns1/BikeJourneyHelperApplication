@@ -1,80 +1,97 @@
-﻿@model IEnumerable<BikeJourneyHelperApplication.Models.BikeRepairShop>
-
+﻿@model PagedList.IPagedList<BikeJourneyHelperApplication.Models.BikeRepairShop>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Repair shops";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BikeRepairShopID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShopName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpeningHours)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lng)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 
-    @foreach (var item in Model)
+    @using (Html.BeginForm("Index", "BikeRepairShops", FormMethod.Get))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BikeRepairShopID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShopName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OpeningHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lng)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BikeRepairShopID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BikeRepairShopID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BikeRepairShopID })
-            </td>
-        </tr>
+        <p>
+            Find repair shop by name: @Html.TextBox("SearchShop", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
     }
 
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                Bike Repair Shop ID
+            </th>
+            <th>
+                @Html.ActionLink("Repair Shop name", "Index", new { order = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Opening Hours
+            </th>
+            <th>
+                latitude
+            </th>
+            <th>
+                longitude
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BikeRepairShopID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpeningHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lng)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BikeRepairShopID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BikeRepairShopID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BikeRepairShopID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
 <section class="bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading"><h2 class="section-heading __browserLink_selected_design" style="color: rgb(255, 255, 255);">Search for your favourite bike repair shops</h2></h2>
                 <hr class="light">
-                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <p class="text-faded">To get directions and estimated journey time, just enter the bike repair shop ID from the list above in the space provided below, and hit the Get directions but to get your directions!</p>
 
             </div>
 
@@ -165,10 +182,6 @@
         function MapIntialize() {
             directionServices = new google.maps.DirectionsService();
             directionDisplay = new google.maps.DirectionsRenderer();
-           
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
 
             //get the user geo cordinates
 
@@ -211,37 +224,11 @@
 
 
 
-            // map.controls[google.maps.ControlPosition.TOP_LEFT].push('destination');
-
-
-
-
-
-
-           /* document.getElementById("getdirection_btn").addEventListener("click", function(){
-                GetSearchedShopLocation();
-            }); */
-
-
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
-
-
+         
 
         }
 
         function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
-
-            window.alert('made it to calculate routes');
-
-            //var userPos = getUserLocation();
-            console.log("users destinaton geo: " + userDestination);
 
             directionServices.route({
 
@@ -253,7 +240,7 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
-                    console.log(response);
+                  
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -268,9 +255,7 @@
         }
 
         function GetSearchedShopLocation() {
-            window.alert("Made it to getLocation");
             var shopID = { 'BikeRepairShopID': $('#repairshopid').val() };
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "BikeRepairShops")',
                 type: "POST",
@@ -286,11 +271,10 @@
                     //   $("#divProcessing").hide();
                     var userLng = resp.Lat;
                     var userLat = resp.Lng;
+                    //Gets the lat and lng of shop and requests directions
                     var userDestination = new google.maps.LatLng(parseFloat(userLng), parseFloat(userLat));
                     //var userDestination = new google.maps.LatLng(resp.Lat, resp.Lng);
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
-                    console.log(resp);
-                    alert(resp);
 
                 }, error: function (jqXHR, status, err) {
                     alert("Repair Shop does not exist");

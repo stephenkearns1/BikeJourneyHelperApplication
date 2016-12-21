@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Threading;
 using BikeJourneyHelperApplication.DAL;
 using BikeJourneyHelperApplication.Models;
+using PagedList;
 
 namespace BikeJourneyHelperApplication.Controllers
 {
@@ -17,10 +18,42 @@ namespace BikeJourneyHelperApplication.Controllers
         private BikeJourneyHelperContext db = new BikeJourneyHelperContext();
 
         // GET: Garages
-        public ActionResult Index()
+        public ActionResult Index(string order, string currentFilter, string searchGarage, int? page)
         {
-            return View(db.Garages.ToList());
-        }
+
+            ViewBag.CurrentSort = order;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(order) ? "garage_name" : "";
+
+            if(searchGarage != null)
+            {
+                page = 1;
+            }else
+            {
+                searchGarage = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchGarage;
+            var garages = from g in db.Garages
+                           select g;
+            if (!String.IsNullOrEmpty(searchGarage))
+            {
+                garages = garages.Where(g => g.Name.Contains(searchGarage));
+            }
+
+                switch (order)
+                {
+                    case "garage_name":
+                        garages = garages.OrderByDescending(g => g.Name);
+                        break;
+                   default:
+                    garages = garages.OrderBy(g => g.Name);
+                    break;
+
+                }
+                    int pageSize = 3;
+                    int pageNumber = (page ?? 1);
+                    return View(garages.ToPagedList(pageNumber, pageSize));
+            }
 
         // GET: Garages/Details/5
         public ActionResult Details(int? id)

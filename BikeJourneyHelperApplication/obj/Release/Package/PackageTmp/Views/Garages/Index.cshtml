@@ -1,8 +1,10 @@
-﻿@model IEnumerable<BikeJourneyHelperApplication.Models.Garage>
-
+﻿
+@model PagedList.IPagedList<BikeJourneyHelperApplication.Models.Garage>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <div class="container">
     @{
-        ViewBag.Title = "Index";
+        ViewBag.Title = "Garage List";
     }
 
     <h2>Index</h2>
@@ -10,23 +12,32 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+@using (Html.BeginForm("Index", "Garages", FormMethod.Get))
+{
+    <p>
+        Find garage by garage name: @Html.TextBox("SearchGarage", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
     <table class="table">
+     
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.GarageID)
+                Garage ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+             
+                @Html.ActionLink("Garage Name", "Index", new { order = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+               Address
             </th>
            
             <th>
-                @Html.DisplayNameFor(model => model.OpeningHours)
+               Opening hours
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PumpsAvailable)
+                Pumps Available
             </th>
           
             <th></th>
@@ -61,7 +72,13 @@
         }
 
     </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
+
 
 <section class="bg-primary" id="about">
     <div class="container">
@@ -195,7 +212,6 @@
 
                     userPosition = pos;
                     map.setCenter(userPosition);
-                    console.log(userPosition);
 
                 }, function () {
                     alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
@@ -207,37 +223,10 @@
 
 
 
-            // map.controls[google.maps.ControlPosition.TOP_LEFT].push('destination');
-
-
-
-
-
-
-           /* document.getElementById("getdirection_btn").addEventListener("click", function(){
-                GetSearchedShopLocation();
-            }); */
-
-
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
-
-
 
         }
 
         function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
-
-            window.alert('made it to calculate routes');
-
-            //var userPos = getUserLocation();
-            console.log("users destinaton geo: " + userDestination);
 
             directionServices.route({
 
@@ -249,7 +238,6 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
-                    console.log(response);
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -264,9 +252,7 @@
         }
 
         function GetSearchedShopLocation() {
-            window.alert("Made it to getLocation");
             var shopID = { 'GarageID': $('#garageid').val() };
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "Garages")',
                 type: "POST",
@@ -285,11 +271,8 @@
                     var userDestination = new google.maps.LatLng(parseFloat(userLng), parseFloat(userLat));
                     //var userDestination = new google.maps.LatLng(resp.Lat, resp.Lng);
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
-                    console.log(resp);
-                    alert(resp);
+               
 
-                    // Do something useful with the data:
-                    //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
                 },error: function (jqXHR, status, err) {
                     alert("Garage does not exist");
                 }

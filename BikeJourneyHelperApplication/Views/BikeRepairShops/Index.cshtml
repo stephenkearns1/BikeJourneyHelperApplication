@@ -1,38 +1,47 @@
-﻿@model IEnumerable<BikeJourneyHelperApplication.Models.BikeRepairShop>
-
+﻿@model PagedList.IPagedList<BikeJourneyHelperApplication.Models.BikeRepairShop>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Repair shops";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="container">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    @using (Html.BeginForm("Index", "BikeRepairShops", FormMethod.Get))
+    {
+        <p>
+            Find repair shop by name: @Html.TextBox("SearchShop", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BikeRepairShopID)
+                Bike Repair Shop ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShopName)
+                @Html.ActionLink("Repair Shop name", "Index", new { order = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Number)
+                Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpeningHours)
+                Opening Hours
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lat)
+                latitude
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lng)
+                longitude
             </th>
             <th></th>
         </tr>
@@ -70,6 +79,11 @@
         }
 
     </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 <section class="bg-primary">
     <div class="container">

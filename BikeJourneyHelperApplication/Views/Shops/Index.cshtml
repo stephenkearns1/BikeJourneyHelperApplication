@@ -1,9 +1,11 @@
-﻿@model IEnumerable<BikeJourneyHelperApplication.Models.Shop>
+﻿@model PagedList.IPagedList<BikeJourneyHelperApplication.Models.Shop>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <div class="container">
 
     @{
-        ViewBag.Title = "Index";
+        ViewBag.Title = "Bike shops";
     }
 
     <h2>Bike Shops</h2>
@@ -12,22 +14,29 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 
+    @using (Html.BeginForm("Index", "Shops", FormMethod.Get))
+    {
+        <p>
+            Find shop by shop name: @Html.TextBox("SearchShop", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
 
 
     <table class="table">
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.ShopID)
+               Shop ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShopName)
+                @Html.ActionLink("Shop name", "Index", new { order = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+               Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpeningHours)
+                Opening Hours 
             </th>
             
             <th></th>
@@ -58,6 +67,11 @@
         }
 
     </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 <section class="bg-primary">
     <div class="container">
@@ -112,6 +126,7 @@
 
     </div>
 
+  
 
 
 

@@ -22,8 +22,9 @@ namespace BikeJourneyHelperApplication.WebAPI
         {
             return db.Notes;
         }
-       
+
         // GET: api/Notes/5
+        [Authorize]
         [ResponseType(typeof(Note))]
         public IHttpActionResult GetNote(int id)
         {
@@ -37,6 +38,7 @@ namespace BikeJourneyHelperApplication.WebAPI
         }
 
         // PUT: api/Notes/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNote(int id, Note note)
         {
@@ -72,6 +74,7 @@ namespace BikeJourneyHelperApplication.WebAPI
         }
 
         // POST: api/Notes
+        [Authorize]
         [ResponseType(typeof(Note))]
         public IHttpActionResult PostNote(Note note)
         {
@@ -87,6 +90,7 @@ namespace BikeJourneyHelperApplication.WebAPI
         }
 
         // DELETE: api/Notes/5
+        [Authorize]
         [ResponseType(typeof(Note))]
         public IHttpActionResult DeleteNote(int id)
         {

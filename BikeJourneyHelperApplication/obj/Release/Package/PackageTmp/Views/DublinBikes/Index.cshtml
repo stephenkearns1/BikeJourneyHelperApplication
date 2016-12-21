@@ -3,7 +3,7 @@
 
 <div class="container">
     @{
-        ViewBag.Title = "Index";
+        ViewBag.Title = "Dublin Bikes";
     }
 
 
@@ -53,7 +53,7 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">We've got what you need!</h2>
                 <hr class="light">
-                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <p class="text-faded">To get Real time information for the bike stations in the list above, just enter the stations ID below, and hit the Get directions button!</p>
                 <hr class="light">
             </div>
 
@@ -108,20 +108,6 @@
 <section class="" id="real_time_info_bikes">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Bike Station Real Time Information:</h2>
-                <hr class="light">
-                <p class="pCustStyle" id="bikeStation_name"></p>
-                <p class="pCustStyle" id="bikeStation_available_stands"></p>
-                <p class="pCustStyle" id="bikeStation_available_bikes"></p>
-                <p class="pCustStyle" id="bikeStation_banking"></p>
-                <p class="pCustStyle" id="bikeStation_bike_stands"></p>
-                <p class="pCustStyle" id="bikeStation_bonus"></p>
-                <p class="pCustStyle" id="bikeStation_last-update"></p>
-            </div>
-
-
-
             <table class="table table-responsive table-hover" id="realtime">
                 <thead>
                     <tr>
@@ -215,17 +201,9 @@
             directionServices = new google.maps.DirectionsService();
             directionDisplay = new google.maps.DirectionsRenderer();
             var testSearch = document.getElementById("searchBtn");
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
-
-            //get the user geo cordinates
-
             var mapOptions = {
 
                 zoom: 14,
-                //center: userPosition,
-                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 mapTypeControl: false
             };
 
@@ -248,7 +226,7 @@
 
                     userPosition = pos;
                     map.setCenter(userPosition);
-                    console.log(userPosition);
+                  
 
                 }, function () {
                     alert("The Geolocation service failed." + "\n" + "Your browswer doesnt support Geolocation");
@@ -267,11 +245,6 @@
 
         function calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination) {
 
-            window.alert('made it to calculate routes');
-
-            //var userPos = getUserLocation();
-            console.log("users destinaton geo: " + userDestination);
-
             directionServices.route({
 
                 origin: userPosition,
@@ -282,7 +255,6 @@
             }, function (response, status) {
 
                 if (status === 'OK') {
-                    console.log(response);
                     $('#right-panel').css("height", "400px");
                     directionDisplay.setDirections(response);
 
@@ -303,10 +275,8 @@
            And also pulling real time info for the station through the use of the dublin bike api
         */
         function GetSearchedShopLocation() {
-            window.alert("Made it to getLocation");
             var shopID = { 'DublinBikeID': $('#bikestationid').val() };
             var stationNum = $('#bikestationid').val();
-            console.log(shopID);
             $.ajax({
                 url: '@Url.Action("GetLocation", "DublinBikes")',
                 type: "POST",
@@ -327,11 +297,6 @@
                     calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition, userDestination);
                     GetRealTimeStationInfo(stationNum);
 
-                    console.log(resp);
-                    alert(resp);
-
-                    // Do something useful with the data:
-                    //  $("<h3>" + resp.Title + " " + resp.Publisher + "</h3>").appendTo("#divResult");
                 }, error: function (jqXHR, status, err) {
                     alert("Station does not exist");
                 }
@@ -352,11 +317,9 @@
                 alert(xhr.responseText);
             },
             success: function (resp) {
-                console.log(resp);
-                alert(resp.available_bike_stands);
                 //gets the date and time of last update
                 var date = new Date(resp.last_update);
-                alert(date);
+               
 
                 /*
                   populates the single row of the table with the searched stations real time information
@@ -370,51 +333,13 @@
                 document.getElementById('bonus_col').innerHTML = resp.bonus;
                 document.getElementById('lastUpdate_col').innerHTML = date;
               
-                /*
-                $("#bikeStation_name").text("Station name:" + resp.name);
-                $("#bikeStation_available_stands").text("Avaiable bike stands:" + resp.available_bike_stands);
-                $("#bikeStation_available_bikes").text("Avaiable bikes:" + resp.available_bikes);
-                $("#bikeStation_banking").text("Banking:" + resp.available_bikes);
-                $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
-                $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
-                $("#bikeStation_last-update").text("Lasted updated: " + date);
-                */
+              
             }
         });
     }
 
 
-    /*
-    function GetRealTimeStationInfo(bikeStationId) {
-        var stationNum = parseInt(bikeStationId);
-        $.ajax({
-            url: 'https://dublinbikes-api-stephenkearns1.c9users.io/',
-            type: "POST",
-            Accept: "application/json",
-            data: { bikeStationNum:stationNum},
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            },
-            success: function (resp) {
-                console.log(resp);
-                alert(resp.available_bike_stands);
-                //gets the date and time of last update
-                var date = new Date(resp.last_update);
-                alert(date);
-                $("#bikeStation_name").text("Station name:" + resp.name);
-                $("#bikeStation_available_stands").text("Avaiable bike stands:" + resp.available_bike_stands);
-                $("#bikeStation_available_bikes").text("Avaiable bikes:" + resp.available_bikes);
-                $("#bikeStation_banking").text("Banking:" + resp.available_bikes);
-                $("#bikeStation_bike_stands").text("Bike Stands:" + resp.bike_stands);
-                $("#bikeStation_bonus").text("Bike Stands:" + resp.bonus);
-                $("#bikeStation_last-update").text("Lasted updated: " + date);
-
-            }
-        });
-    }
-
-    */
-    /* api key for dublin bikes: ff081760b867231eb570581fa1a7453d9ec636f4 */
+   
 
 </script>
 

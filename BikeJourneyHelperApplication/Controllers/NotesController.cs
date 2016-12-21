@@ -16,6 +16,7 @@ namespace BikeJourneyHelperApplication.Controllers
     {
         private BikeJourneyHelperContext db = new BikeJourneyHelperContext();
 
+        [Authorize]
         // GET: Notes
         public ActionResult Index()
         {

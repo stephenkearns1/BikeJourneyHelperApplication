@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">We've have got journeys covered!</h2>
+                <h2 class="section-heading">We've have got your journeys covered!</h2>
                 <hr class="light">
                 <p class="text-faded">Bike Journey Buddy has everything you need while planning your biking journey or while on the journey. To get started all you need to do is enter your starting location and destination below.</p>
                 
@@ -162,14 +162,11 @@
             var directionDisplay = new google.maps.DirectionsRenderer;
             var userPosition;
             var travel_mode = 'BICYCLING';
-            //tells the api to use the new UI
-            // google.maps.visualRefresh = true;
-            //var Dublin = new google.maps.LatLng(53.3498, 6.2603);
+          
+            //sets up the map options 
             var mapOptions = {
 
                 zoom: 14,
-               // center: { lat: 53.3498, lng: -6.2603 },
-                // mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: false
             };
@@ -181,6 +178,7 @@
                         lng: position.coords.longitude
                     };
 
+                    //centres the focus of the map on the users location 
                     map.setCenter(pos);
 
                 }, function () {
@@ -253,19 +251,9 @@
             });
 
 
-            //set up the the event handler to search for route of
-            /*  var onChangeEventHandler = function () {
-                  window.alert('Made it to onChangeHandler');
-                  //call the calculate route function
-                  calculateUserRouteAndDisplay(directionServices, directionDisplay, userPosition);
-              }; */
-
-            //  document.getElementById('searchBtn').addEventListener('click', onChangeEventHandler);
 
 
             function calculateUserRouteAndDisplay(directionServices, directionDisplay, location_place_id, destination_place_id, travel_mode) {
-
-                window.alert('made it to calculate routes');
 
                 if (!location_place_id || !destination_place_id) {
                     return;
@@ -280,10 +268,9 @@
 
 
                     }, function (response, status) {
-                        console.log(response);
+     
                         if (status === 'OK') {
-                           // $("#map_canvas").css("width", "60%");
-                            //$('#right-panel').css("width", "100%");
+                         
                             $('#right-panel').css("height", "400px");
                             directionDisplay.setDirections(response);
                         } else {
